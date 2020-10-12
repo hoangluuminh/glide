@@ -1,4 +1,5 @@
 import { define } from '../utils/object'
+import { generateAnimationTimingFunc } from '../custom/animationTimingFunc'
 
 export default function (Glide, Components, Events) {
   /**
@@ -20,7 +21,8 @@ export default function (Glide, Components, Events) {
       let settings = Glide.settings
 
       if (!disabled) {
-        return `${property} ${this.duration}ms ${settings.animationTimingFunc}`
+        const animationTimingFunc = generateAnimationTimingFunc(settings.animationTimingFunc)
+        return `${property} ${this.duration}ms ${animationTimingFunc}`
       }
 
       return `${property} 0ms ${settings.animationTimingFunc}`
