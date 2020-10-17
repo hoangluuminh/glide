@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glide Demo</title>
+
+
+  <!-- JavaScript-->
+  <script src="../dist/glide.min.js"></script>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- Required Core Stylesheet -->
+  <link rel="stylesheet" href="../dist/css/glide.core.min.css">
+
+  <!-- Optional Theme Stylesheet -->
+  <link rel="stylesheet" href="../dist/css/glide.theme.min.css">
+
+  <style>
+    .glide {
+      height: 500px;
+    }
+
+    .glide__track {
+      height: 100%;
+    }
+
+    .glide__slides {
+      height: 100%;
+    }
+
+    .glide img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+  </div>
+
+  <script src="build/App.js"></script>
+  <script>
+    new Glide('.glide', {
+      type: 'carousel',
+      startAt: 0,
+      focusAt: 'center',
+      animationTimingFunc: '$$bounce',
+      perView: 3
+    }).mount()
+  </script>
+</body>
+
+</html>
