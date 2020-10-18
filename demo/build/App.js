@@ -21,21 +21,21 @@ var App = function (_React$Component) {
 
     _this.state = {
       glideOptions: {
-        type: "carousel",
+        type: "slider",
         startAt: 0,
-        focusAt: "center",
+        focusAt: "0",
         perView: 3,
         gap: 10,
         autoplay: 3000,
         hoverpause: true,
         keyboard: true,
-        bound: false,
+        bound: true,
         animationDuration: 400,
         rewind: true,
-        rewindDuration: 800,
+        rewindDuration: 500,
         animationTimingFunc: "$$bounce",
-        direction: 'ltr',
-        peek: 0
+        direction: "ltr",
+        peek: 100
       }
     };
     return _this;
@@ -51,8 +51,8 @@ var App = function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
+      // check if MOUNTED
       if (!!this.state.glide && !!this.state.glide.update) {
-        // check if MOUNTED
         this.state.glide.update(this.state.glideOptions);
       }
     }
