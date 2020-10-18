@@ -222,7 +222,8 @@ var defaults = {
     },
     slide: {
       clone: 'glide__slide--clone',
-      active: 'glide__slide--active'
+      active: 'glide__slide--active',
+      peek: 'glide__slide--peek'
     },
     arrow: {
       disabled: 'glide__arrow--disabled'
@@ -1845,6 +1846,37 @@ function Sizes (Glide, Components, Events) {
   return Sizes;
 }
 
+function addSlidePeekClass(Glide, Components) {
+  var _Glide$settings = Glide.settings,
+      perView = _Glide$settings.perView,
+      focusAt = _Glide$settings.focusAt;
+
+  var index = Glide.index;
+  var classes = Glide.settings.classes;
+
+  var pivotRange = Math.floor(perView / 2);
+  var pivotIndex = 0;
+
+  if (focusAt === 'center') {
+    pivotIndex = index;
+  } else if (!isNaN(focusAt)) {
+    pivotIndex = pivotRange + index;
+  }
+
+  for (var i = 0; i < Components.Html.slides.length; i += 1) {
+    var slide = Components.Html.slides[i];
+    slide.classList.remove(classes.slide.peek);
+
+    if (!isInRange(i, pivotIndex, pivotRange)) {
+      slide.classList.add(classes.slide.peek);
+    }
+  }
+}
+
+function isInRange(value, pivot, range) {
+  return value >= pivot - range && value <= pivot + range;
+}
+
 function Build (Glide, Components, Events) {
   var Build = {
     /**
@@ -1889,6 +1921,9 @@ function Build (Glide, Components, Events) {
           sibling.classList.remove(classes.slide.active);
         });
       }
+
+      // CUSTOM
+      addSlidePeekClass(Glide, Components);
     },
 
 
@@ -2634,7 +2669,9 @@ function Transition (Glide, Components, Events) {
       var settings = Glide.settings;
 
       if (!disabled) {
+        // CUSTOM
         var animationTimingFunc = generateAnimationTimingFunc(settings.animationTimingFunc);
+
         return property + ' ' + this.duration + 'ms ' + animationTimingFunc;
       }
 

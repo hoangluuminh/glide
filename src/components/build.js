@@ -1,4 +1,5 @@
 import { siblings } from '../utils/dom'
+import { addSlidePeekClass } from '../custom/slidePeekClass'
 
 export default function (Glide, Components, Events) {
   const Build = {
@@ -42,6 +43,9 @@ export default function (Glide, Components, Events) {
           sibling.classList.remove(classes.slide.active)
         })
       }
+
+      // CUSTOM
+      addSlidePeekClass(Glide, Components)
     },
 
     /**

@@ -216,7 +216,8 @@ export default {
     },
     slide: {
       clone: 'glide__slide--clone',
-      active: 'glide__slide--active'
+      active: 'glide__slide--active',
+      peek: 'glide__slide--peek'
     },
     arrow: {
       disabled: 'glide__arrow--disabled'

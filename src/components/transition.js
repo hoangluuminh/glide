@@ -21,7 +21,9 @@ export default function (Glide, Components, Events) {
       let settings = Glide.settings
 
       if (!disabled) {
+        // CUSTOM
         const animationTimingFunc = generateAnimationTimingFunc(settings.animationTimingFunc)
+
         return `${property} ${this.duration}ms ${animationTimingFunc}`
       }
 
