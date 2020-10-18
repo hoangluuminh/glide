@@ -1854,27 +1854,32 @@ function addSlidePeekClass(Glide, Components) {
   var index = Glide.index;
   var classes = Glide.settings.classes;
 
-  var pivotRange = Math.floor(perView / 2);
-  var pivotIndex = 0;
-
+  var rangeStart = 0;
+  var rangeEnd = 0;
   if (focusAt === 'center') {
-    pivotIndex = index;
-  } else if (!isNaN(focusAt)) {
-    pivotIndex = pivotRange + index;
+    rangeStart = index - Math.floor(perView / 2);
+    rangeEnd = index + Math.floor(perView / 2);
+    if (perView % 2 === 0) {
+      rangeStart++;
+      rangeEnd--;
+    }
+  } else {
+    rangeStart = index - focusAt;
+    rangeEnd = index - focusAt + perView - 1;
   }
 
   for (var i = 0; i < Components.Html.slides.length; i += 1) {
     var slide = Components.Html.slides[i];
     slide.classList.remove(classes.slide.peek);
 
-    if (!isInRange(i, pivotIndex, pivotRange)) {
+    if (!isInRange(i, rangeStart, rangeEnd)) {
       slide.classList.add(classes.slide.peek);
     }
   }
 }
 
-function isInRange(value, pivot, range) {
-  return value >= pivot - range && value <= pivot + range;
+function isInRange(value, rangeStart, rangeEnd) {
+  return value >= rangeStart && value <= rangeEnd;
 }
 
 function Build (Glide, Components, Events) {

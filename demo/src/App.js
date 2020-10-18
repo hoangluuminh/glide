@@ -81,6 +81,21 @@ class App extends React.Component {
               <li className="glide__slide">
                 <img src="./img/img05.jpg" alt="05" height="500"></img>
               </li>
+              <li className="glide__slide">
+                <img src="./img/img01.jpg" alt="01" height="500"></img>
+              </li>
+              <li className="glide__slide">
+                <img src="./img/img02.jpg" alt="02" height="500"></img>
+              </li>
+              <li className="glide__slide">
+                <img src="./img/img03.jpg" alt="03" height="500"></img>
+              </li>
+              <li className="glide__slide">
+                <img src="./img/img04.jpg" alt="04" height="500"></img>
+              </li>
+              <li className="glide__slide">
+                <img src="./img/img05.jpg" alt="05" height="500"></img>
+              </li>
             </ul>
           </div>
           <div className="glide__arrows" data-glide-el="controls">
@@ -103,6 +118,11 @@ class App extends React.Component {
             <button className="glide__bullet" data-glide-dir="=2"></button>
             <button className="glide__bullet" data-glide-dir="=3"></button>
             <button className="glide__bullet" data-glide-dir="=4"></button>
+            <button className="glide__bullet" data-glide-dir="=5"></button>
+            <button className="glide__bullet" data-glide-dir="=6"></button>
+            <button className="glide__bullet" data-glide-dir="=7"></button>
+            <button className="glide__bullet" data-glide-dir="=8"></button>
+            <button className="glide__bullet" data-glide-dir="=9"></button>
           </div>
         </div>
       </content>

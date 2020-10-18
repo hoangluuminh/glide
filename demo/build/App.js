@@ -121,6 +121,31 @@ var App = function (_React$Component) {
                 "li",
                 { className: "glide__slide" },
                 React.createElement("img", { src: "./img/img05.jpg", alt: "05", height: "500" })
+              ),
+              React.createElement(
+                "li",
+                { className: "glide__slide" },
+                React.createElement("img", { src: "./img/img01.jpg", alt: "01", height: "500" })
+              ),
+              React.createElement(
+                "li",
+                { className: "glide__slide" },
+                React.createElement("img", { src: "./img/img02.jpg", alt: "02", height: "500" })
+              ),
+              React.createElement(
+                "li",
+                { className: "glide__slide" },
+                React.createElement("img", { src: "./img/img03.jpg", alt: "03", height: "500" })
+              ),
+              React.createElement(
+                "li",
+                { className: "glide__slide" },
+                React.createElement("img", { src: "./img/img04.jpg", alt: "04", height: "500" })
+              ),
+              React.createElement(
+                "li",
+                { className: "glide__slide" },
+                React.createElement("img", { src: "./img/img05.jpg", alt: "05", height: "500" })
               )
             )
           ),
@@ -151,7 +176,12 @@ var App = function (_React$Component) {
             React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=1" }),
             React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=2" }),
             React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=3" }),
-            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=4" })
+            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=4" }),
+            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=5" }),
+            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=6" }),
+            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=7" }),
+            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=8" }),
+            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=9" })
           )
         )
       );
