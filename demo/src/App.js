@@ -1,20 +1,24 @@
 class App extends React.Component {
   state = {
     glide: null,
-    animationTimingFunc: "",
+    glideOptions: null,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      animationTimingFunc: "$$bounce",
+      glideOptions: {
+        type: "carousel",
+        startAt: 0,
+        focusAt: "center",
+        animationTimingFunc: "$$bounce",
+        perView: 3,
+      },
     };
   }
 
   componentDidMount() {
-    const g = this.glideFactory({
-      animationTimingFunc: this.state.animationTimingFunc,
-    });
+    const g = this.glideFactory(this.state.glideOptions);
     g.mount();
     this.setState({ glide: g });
   }
@@ -22,26 +26,32 @@ class App extends React.Component {
   componentDidUpdate() {
     if (!!this.state.glide && !!this.state.glide.update) {
       // check if MOUNTED
-      this.state.glide.update({
-        animationTimingFunc: this.state.animationTimingFunc,
-      });
+      this.state.glide.update(this.state.glideOptions);
     }
   }
 
   render() {
-    if (this.state.liked) {
-      return "You liked this.";
-    }
-
     return (
       <content>
-        <input
-          type="text"
-          value={this.state.animationTimingFunc}
-          onChange={(e) =>
-            this.setState({ animationTimingFunc: e.target.value })
-          }
-        ></input>
+        <div className="options">
+          {this.state.glideOptions &&
+            Object.keys(this.state.glideOptions).map((optionKey) => {
+              const option = this.state.glideOptions[optionKey];
+              return (
+                <React.Fragment key={`glideOptions_${optionKey}`}>
+                  <label htmlFor={optionKey}>{optionKey}</label>
+                  <input
+                    type="text"
+                    name={optionKey}
+                    value={option}
+                    onChange={(e) =>
+                      this.handleOnChangeGlideOptions(e, optionKey)
+                    }
+                  ></input>
+                </React.Fragment>
+              );
+            })}
+        </div>
 
         <div className="glide">
           <div className="glide__track" data-glide-el="track">
@@ -92,16 +102,24 @@ class App extends React.Component {
   // Methods
 
   glideFactory(options) {
-    const { animationTimingFunc } = options;
-
-    const glide = new Glide(".glide", {
-      type: "carousel",
-      startAt: 0,
-      focusAt: "center",
-      animationTimingFunc,
-      perView: 3,
-    });
+    console.log(options);
+    const glide = new Glide(".glide", options);
+    console.log(glide);
     return glide;
+  }
+
+  handleOnChangeGlideOptions(e, key) {
+    const value = e.target.value;
+
+    this.setState((prevState, props) => {
+      const options = prevState.glideOptions;
+      options[key] = value;
+      return {
+        ...prevState,
+        glideOptions: options,
+      };
+    });
+    this.state.glide.update();
   }
 }
 

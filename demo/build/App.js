@@ -16,11 +16,17 @@ var App = function (_React$Component) {
 
     _this.state = {
       glide: null,
-      animationTimingFunc: ""
+      glideOptions: null
     };
 
     _this.state = {
-      animationTimingFunc: "$$bounce"
+      glideOptions: {
+        type: "carousel",
+        startAt: 0,
+        focusAt: "center",
+        animationTimingFunc: "$$bounce",
+        perView: 3
+      }
     };
     return _this;
   }
@@ -28,9 +34,7 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var g = this.glideFactory({
-        animationTimingFunc: this.state.animationTimingFunc
-      });
+      var g = this.glideFactory(this.state.glideOptions);
       g.mount();
       this.setState({ glide: g });
     }
@@ -39,9 +43,7 @@ var App = function (_React$Component) {
     value: function componentDidUpdate() {
       if (!!this.state.glide && !!this.state.glide.update) {
         // check if MOUNTED
-        this.state.glide.update({
-          animationTimingFunc: this.state.animationTimingFunc
-        });
+        this.state.glide.update(this.state.glideOptions);
       }
     }
   }, {
@@ -49,20 +51,33 @@ var App = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      if (this.state.liked) {
-        return "You liked this.";
-      }
-
       return React.createElement(
         "content",
         null,
-        React.createElement("input", {
-          type: "text",
-          value: this.state.animationTimingFunc,
-          onChange: function onChange(e) {
-            return _this2.setState({ animationTimingFunc: e.target.value });
-          }
-        }),
+        React.createElement(
+          "div",
+          { className: "options" },
+          this.state.glideOptions && Object.keys(this.state.glideOptions).map(function (optionKey) {
+            var option = _this2.state.glideOptions[optionKey];
+            return React.createElement(
+              React.Fragment,
+              { key: "glideOptions_" + optionKey },
+              React.createElement(
+                "label",
+                { htmlFor: optionKey },
+                optionKey
+              ),
+              React.createElement("input", {
+                type: "text",
+                name: optionKey,
+                value: option,
+                onChange: function onChange(e) {
+                  return _this2.handleOnChangeGlideOptions(e, optionKey);
+                }
+              })
+            );
+          })
+        ),
         React.createElement(
           "div",
           { className: "glide" },
@@ -137,17 +152,24 @@ var App = function (_React$Component) {
   }, {
     key: "glideFactory",
     value: function glideFactory(options) {
-      var animationTimingFunc = options.animationTimingFunc;
-
-
-      var glide = new Glide(".glide", {
-        type: "carousel",
-        startAt: 0,
-        focusAt: "center",
-        animationTimingFunc: animationTimingFunc,
-        perView: 3
-      });
+      console.log(options);
+      var glide = new Glide(".glide", options);
+      console.log(glide);
       return glide;
+    }
+  }, {
+    key: "handleOnChangeGlideOptions",
+    value: function handleOnChangeGlideOptions(e, key) {
+      var value = e.target.value;
+
+      this.setState(function (prevState, props) {
+        var options = prevState.glideOptions;
+        options[key] = value;
+        return Object.assign({}, prevState, {
+          glideOptions: options
+        });
+      });
+      this.state.glide.update();
     }
   }]);
 
