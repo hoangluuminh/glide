@@ -4,8 +4,8 @@ const predefinedAnimations = {
   '$$ease-in': 'ease-in',
   '$$ease-out': 'ease-out',
   '$$ease-in-out': 'ease-in-out',
-  '$$bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
-
+  '$$bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+  '$$retro': 'steps(5, end)'
 };
 
 export function generateAnimationTimingFunc (timingFuncStr) {

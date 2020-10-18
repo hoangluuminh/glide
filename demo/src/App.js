@@ -11,8 +11,18 @@ class App extends React.Component {
         type: "carousel",
         startAt: 0,
         focusAt: "center",
-        animationTimingFunc: "$$bounce",
         perView: 3,
+        gap: 10,
+        autoplay: 3000,
+        hoverpause: true,
+        keyboard: true,
+        bound: false,
+        animationDuration: 400,
+        rewind: true,
+        rewindDuration: 800,
+        animationTimingFunc: "$$bounce",
+        direction: 'ltr',
+        peek: 0
       },
     };
   }
@@ -102,9 +112,7 @@ class App extends React.Component {
   // Methods
 
   glideFactory(options) {
-    console.log(options);
     const glide = new Glide(".glide", options);
-    console.log(glide);
     return glide;
   }
 

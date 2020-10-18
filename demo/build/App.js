@@ -24,8 +24,18 @@ var App = function (_React$Component) {
         type: "carousel",
         startAt: 0,
         focusAt: "center",
+        perView: 3,
+        gap: 10,
+        autoplay: 3000,
+        hoverpause: true,
+        keyboard: true,
+        bound: false,
+        animationDuration: 400,
+        rewind: true,
+        rewindDuration: 800,
         animationTimingFunc: "$$bounce",
-        perView: 3
+        direction: 'ltr',
+        peek: 0
       }
     };
     return _this;
@@ -152,9 +162,7 @@ var App = function (_React$Component) {
   }, {
     key: "glideFactory",
     value: function glideFactory(options) {
-      console.log(options);
       var glide = new Glide(".glide", options);
-      console.log(glide);
       return glide;
     }
   }, {
