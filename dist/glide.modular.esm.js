@@ -914,6 +914,43 @@ var Glide = function () {
   return Glide;
 }();
 
+function addSlidePeekClass(Glide, Components) {
+  var _Glide$settings = Glide.settings,
+      perView = _Glide$settings.perView,
+      focusAt = _Glide$settings.focusAt;
+
+  var index = Glide.index;
+  var classes = Glide.settings.classes;
+
+  var rangeStart = 0;
+  var rangeEnd = 0;
+  if (focusAt === 'center') {
+    rangeStart = index - Math.floor(perView / 2);
+    rangeEnd = index + Math.floor(perView / 2);
+    if (perView % 2 === 0) {
+      // For even number of perView => Decrease range
+      rangeStart++;
+      rangeEnd--;
+    }
+  } else {
+    rangeStart = index - focusAt;
+    rangeEnd = index - focusAt + perView - 1;
+  }
+
+  for (var i = 0; i < Components.Html.slides.length; i += 1) {
+    var slide = Components.Html.slides[i];
+    slide.classList.remove(classes.slide.peek);
+
+    if (!isInRange(i, rangeStart, rangeEnd)) {
+      slide.classList.add(classes.slide.peek);
+    }
+  }
+}
+
+function isInRange(value, rangeStart, rangeEnd) {
+  return value >= rangeStart && value <= rangeEnd;
+}
+
 function Run (Glide, Components, Events) {
   var Run = {
     /**
@@ -944,6 +981,9 @@ function Run (Glide, Components, Events) {
         this.calculate();
 
         Events.emit('run', this.move);
+
+        // CUSTOM
+        addSlidePeekClass(Glide, Components);
 
         Components.Transition.after(function () {
           if (_this.isStart()) {
@@ -1846,42 +1886,6 @@ function Sizes (Glide, Components, Events) {
   return Sizes;
 }
 
-function addSlidePeekClass(Glide, Components) {
-  var _Glide$settings = Glide.settings,
-      perView = _Glide$settings.perView,
-      focusAt = _Glide$settings.focusAt;
-
-  var index = Glide.index;
-  var classes = Glide.settings.classes;
-
-  var rangeStart = 0;
-  var rangeEnd = 0;
-  if (focusAt === 'center') {
-    rangeStart = index - Math.floor(perView / 2);
-    rangeEnd = index + Math.floor(perView / 2);
-    if (perView % 2 === 0) {
-      rangeStart++;
-      rangeEnd--;
-    }
-  } else {
-    rangeStart = index - focusAt;
-    rangeEnd = index - focusAt + perView - 1;
-  }
-
-  for (var i = 0; i < Components.Html.slides.length; i += 1) {
-    var slide = Components.Html.slides[i];
-    slide.classList.remove(classes.slide.peek);
-
-    if (!isInRange(i, rangeStart, rangeEnd)) {
-      slide.classList.add(classes.slide.peek);
-    }
-  }
-}
-
-function isInRange(value, rangeStart, rangeEnd) {
-  return value >= rangeStart && value <= rangeEnd;
-}
-
 function Build (Glide, Components, Events) {
   var Build = {
     /**
@@ -1926,9 +1930,6 @@ function Build (Glide, Components, Events) {
           sibling.classList.remove(classes.slide.active);
         });
       }
-
-      // CUSTOM
-      addSlidePeekClass(Glide, Components);
     },
 
 

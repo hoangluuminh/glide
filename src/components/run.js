@@ -1,6 +1,7 @@
 import { warn } from '../utils/log'
 import { toInt } from '../utils/unit'
 import { define } from '../utils/object'
+import { addSlidePeekClass } from '../custom/slidePeekClass'
 
 export default function (Glide, Components, Events) {
   const Run = {
@@ -29,6 +30,9 @@ export default function (Glide, Components, Events) {
         this.calculate()
 
         Events.emit('run', this.move)
+
+        // CUSTOM
+        addSlidePeekClass(Glide, Components)
 
         Components.Transition.after(() => {
           if (this.isStart()) {
