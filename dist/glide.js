@@ -1905,6 +1905,8 @@
 
         this.typeClass();
         this.activeClass();
+        // CUSTOM
+        addSlidePeekClass(Glide, Components);
 
         Events.emit('build.after');
       },

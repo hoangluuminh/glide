@@ -23,11 +23,20 @@
       height: 500px;
     }
 
-    .glide__track {
-      height: 100%;
+    .glide__slide {
+      transition: transform 0.5s, opacity 0.5s;
+    }
+
+    .glide__slide--peek {
+      transform: scale(0.9);
+      opacity: 0.5;
     }
 
     .glide__slides {
+      height: 100%;
+    }
+
+    .glide__track {
       height: 100%;
     }
 

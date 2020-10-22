@@ -1,4 +1,5 @@
 import { siblings } from '../utils/dom'
+import { addSlidePeekClass } from '../custom/slidePeekClass'
 
 export default function (Glide, Components, Events) {
   const Build = {
@@ -13,6 +14,8 @@ export default function (Glide, Components, Events) {
 
       this.typeClass()
       this.activeClass()
+      // CUSTOM
+      addSlidePeekClass(Glide, Components)
 
       Events.emit('build.after')
     },
