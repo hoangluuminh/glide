@@ -8,23 +8,33 @@ export function performMoveAnimation (Glide, Components, beforeMoveIndex) {
   let animationStyle = ''
 
   let slides = Components.Html.slides
-  let slide = Components.Html.slides[Glide.index]
+  const animationDuration = Glide.settings.animationDuration
 
   switch (directionStr) {
     case '<': {
-      console.log('i am moving left')
       animationStyle = 'pendulum-left'
       break
     }
     case '>': {
-      console.log('i am moving right')
-      animationStyle = 'pendulum-left'
+      animationStyle = 'pendulum-right'
       break
     }
   }
 
   slides.forEach(_slide => {
+    void _slide.offsetWidth
     _slide.classList.add(`glide__slide--anim-${animationStyle}`)
+  })
+}
+
+export function completeMoveAnimation (Glide, Components) {
+  let slides = Components.Html.slides
+  slides.forEach(_slide => {
+    _slide.className.split(' ').forEach(className => {
+      if (className.match(/^glide__slide--anim-/)) {
+        _slide.classList.remove(className)
+      }
+    })
   })
 }
 

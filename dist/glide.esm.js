@@ -961,25 +961,35 @@ function performMoveAnimation(Glide, Components, beforeMoveIndex) {
   var animationStyle = '';
 
   var slides = Components.Html.slides;
-  var slide = Components.Html.slides[Glide.index];
+  var animationDuration = Glide.settings.animationDuration;
 
   switch (directionStr) {
     case '<':
       {
-        console.log('i am moving left');
         animationStyle = 'pendulum-left';
         break;
       }
     case '>':
       {
-        console.log('i am moving right');
-        animationStyle = 'pendulum-left';
+        animationStyle = 'pendulum-right';
         break;
       }
   }
 
   slides.forEach(function (_slide) {
+    void _slide.offsetWidth;
     _slide.classList.add('glide__slide--anim-' + animationStyle);
+  });
+}
+
+function completeMoveAnimation(Glide, Components) {
+  var slides = Components.Html.slides;
+  slides.forEach(function (_slide) {
+    _slide.className.split(' ').forEach(function (className) {
+      if (className.match(/^glide__slide--anim-/)) {
+        _slide.classList.remove(className);
+      }
+    });
   });
 }
 
@@ -1049,6 +1059,9 @@ function Run (Glide, Components, Events) {
           }
 
           Events.emit('run.after', _this.move);
+
+          // CUSTOM
+          completeMoveAnimation(Glide, Components);
 
           Glide.enable();
         });

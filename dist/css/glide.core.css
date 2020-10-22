@@ -36,14 +36,21 @@
       -moz-user-select: none;
       -ms-user-select: none; }
     .glide__slide--anim-pendulum-left {
-      animation: anim 0.6s ease-in-out both; }
+      animation: anim1 400ms ease-in-out both;
+      animation-direction: reverse; }
 
-@keyframes anim {
+@keyframes anim1 {
   0% {
-    -webkit-transform: rotate(0);
     transform: rotate(0); }
   100% {
-    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+    .glide__slide--anim-pendulum-right {
+      animation: anim2 400ms ease-in-out both; }
+
+@keyframes anim2 {
+  0% {
+    transform: rotate(0); }
+  100% {
     transform: rotate(360deg); } }
   .glide__arrows {
     -webkit-touch-callout: none;

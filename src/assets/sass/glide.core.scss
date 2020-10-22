@@ -5,6 +5,7 @@
 
   $se: $glide-element-separator;
   $sm: $glide-modifier-separator;
+  $smm: '-';
 
   position: relative;
   width: 100%;
@@ -54,18 +55,32 @@
       -ms-user-select: none;
     }
 
-    &#{$sm}anim-pendulum {
-      &-left {
-        animation: anim 0.6s ease-in-out both;
+    &#{$sm}anim#{$smm} {
+      &pendulum {
+        &#{$smm}left {
+          animation: anim1 400ms ease-in-out both;
+          animation-direction: reverse;
 
-        @keyframes anim {
-          0% {
-            -webkit-transform: rotate(0);
-            transform: rotate(0);
+          @keyframes anim1 {
+            0% {
+              transform: rotate(0);
+            }
+            100% {
+              transform: rotate(360deg);
+            }
           }
-          100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+        }
+
+        &#{$smm}right {
+          animation: anim2 400ms ease-in-out both;
+
+          @keyframes anim2 {
+            0% {
+              transform: rotate(0);
+            }
+            100% {
+              transform: rotate(360deg);
+            }
           }
         }
       }
