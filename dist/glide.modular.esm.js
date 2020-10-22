@@ -951,6 +951,43 @@ function isInRange(value, rangeStart, rangeEnd) {
   return value >= rangeStart && value <= rangeEnd;
 }
 
+function getBeforeMoveIndex(Glide, Components) {
+  var newIndex = Glide.index;
+  return newIndex;
+}
+
+function performMoveAnimation(Glide, Components, beforeMoveIndex) {
+  var directionStr = determineMovingDirection(Glide, Components, beforeMoveIndex);
+
+  var slides = Components.Html.slides;
+  var slide = Components.Html.slides[Glide.index];
+
+  switch (directionStr) {
+    case '<':
+      {
+        console.log('i am moving left');
+        break;
+      }
+    case '>':
+      {
+        console.log('i am moving right');
+        break;
+      }
+  }
+}
+
+function determineMovingDirection(Glide, Components, oldIndex) {
+  var directionStr = '';
+
+  if (Glide.index >= oldIndex) {
+    directionStr = '>';
+  } else {
+    directionStr = '<';
+  }
+
+  return directionStr;
+}
+
 function Run (Glide, Components, Events) {
   var Run = {
     /**
@@ -978,12 +1015,16 @@ function Run (Glide, Components, Events) {
 
         Events.emit('run.before', this.move);
 
+        // CUSTOM
+        var beforeMoveIndex = getBeforeMoveIndex(Glide, Components);
+
         this.calculate();
 
         Events.emit('run', this.move);
 
         // CUSTOM
         addSlidePeekClass(Glide, Components);
+        performMoveAnimation(Glide, Components, beforeMoveIndex);
 
         Components.Transition.after(function () {
           if (_this.isStart()) {
