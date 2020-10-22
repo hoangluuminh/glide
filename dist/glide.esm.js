@@ -958,6 +958,7 @@ function getBeforeMoveIndex(Glide, Components) {
 
 function performMoveAnimation(Glide, Components, beforeMoveIndex) {
   var directionStr = determineMovingDirection(Glide, Components, beforeMoveIndex);
+  var animationStyle = '';
 
   var slides = Components.Html.slides;
   var slide = Components.Html.slides[Glide.index];
@@ -966,14 +967,20 @@ function performMoveAnimation(Glide, Components, beforeMoveIndex) {
     case '<':
       {
         console.log('i am moving left');
+        animationStyle = 'pendulum-left';
         break;
       }
     case '>':
       {
         console.log('i am moving right');
+        animationStyle = 'pendulum-left';
         break;
       }
   }
+
+  slides.forEach(function (_slide) {
+    _slide.classList.add('glide__slide--anim-' + animationStyle);
+  });
 }
 
 function determineMovingDirection(Glide, Components, oldIndex) {

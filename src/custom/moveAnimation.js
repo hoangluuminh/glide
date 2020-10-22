@@ -5,6 +5,7 @@ export function getBeforeMoveIndex (Glide, Components) {
 
 export function performMoveAnimation (Glide, Components, beforeMoveIndex) {
   const directionStr = determineMovingDirection(Glide, Components, beforeMoveIndex)
+  let animationStyle = ''
 
   let slides = Components.Html.slides
   let slide = Components.Html.slides[Glide.index]
@@ -12,13 +13,19 @@ export function performMoveAnimation (Glide, Components, beforeMoveIndex) {
   switch (directionStr) {
     case '<': {
       console.log('i am moving left')
+      animationStyle = 'pendulum-left'
       break
     }
     case '>': {
       console.log('i am moving right')
+      animationStyle = 'pendulum-left'
       break
     }
   }
+
+  slides.forEach(_slide => {
+    _slide.classList.add(`glide__slide--anim-${animationStyle}`)
+  })
 }
 
 function determineMovingDirection (Glide, Components, oldIndex) {
