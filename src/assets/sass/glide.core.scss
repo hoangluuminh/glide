@@ -121,6 +121,96 @@
           }
         }
       }
+
+      &bounceInward {
+        &#{$smm}left {
+          @keyframes anim-bounceInward-left {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(0.75);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+        }
+
+        &#{$smm}right {
+          @keyframes anim-bounceInward-right {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(0.75);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+        }
+      }
+
+      &bounceUpward {
+        &#{$smm}left {
+          @keyframes anim-bounceUpward-left {
+            0% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-100px);
+            }
+            100% {
+              transform: translateY(0px);
+            }
+          }
+        }
+
+        &#{$smm}right {
+          @keyframes anim-bounceUpward-right {
+            0% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-100px);
+            }
+            100% {
+              transform: translateY(0px);
+            }
+          }
+        }
+      }
+
+      &bounceDownward {
+        &#{$smm}left {
+          @keyframes anim-bounceDownward-left {
+            0% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(100px);
+            }
+            100% {
+              transform: translateY(0px);
+            }
+          }
+        }
+
+        &#{$smm}right {
+          @keyframes anim-bounceDownward-right {
+            0% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(100px);
+            }
+            100% {
+              transform: translateY(0px);
+            }
+          }
+        }
+      }
     }
   }
 
