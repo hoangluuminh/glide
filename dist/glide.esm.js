@@ -959,8 +959,6 @@ function isInRange(value, rangeStart, rangeEnd) {
   return value >= rangeStart && value <= rangeEnd;
 }
 
-var ANIMATIONS = ['spin', 'pendulum', 'bounceInward', 'bounceUpward', 'bounceDownward'];
-
 function getBeforeMoveIndex(Glide, Components) {
   var newIndex = Glide.index;
   return newIndex;
@@ -974,7 +972,7 @@ function performMoveAnimation(Glide, Components, beforeMoveIndex) {
   var swipeAnimation = Glide.settings.swipeAnimation;
   var animationDuration = Glide.settings.animationDuration;
 
-  if (!swipeAnimation || !ANIMATIONS.includes(swipeAnimation)) {
+  if (!swipeAnimation) {
     return;
   }
 

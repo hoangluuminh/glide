@@ -16,10 +16,10 @@ export function performMoveAnimation (Glide, Components, beforeMoveIndex) {
   let animationStyle = ''
 
   let slides = Components.Html.slides
-  const swipeAnimation = Glide.settings.swipeAnimation
+  let swipeAnimation = Glide.settings.swipeAnimation
   const animationDuration = Glide.settings.animationDuration
 
-  if (!swipeAnimation || !ANIMATIONS.includes(swipeAnimation)) {
+  if (!swipeAnimation) {
     return
   }
 
