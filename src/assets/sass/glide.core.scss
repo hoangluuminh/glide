@@ -56,27 +56,67 @@
     }
 
     &#{$sm}anim#{$smm} {
-      &pendulum {
+      &spin {
         &#{$smm}left {
-          animation-direction: reverse !important;
-
-          @keyframes anim {
+          @keyframes anim-spin-left {
             0% {
-              transform: rotate(0);
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(-360deg);
+            }
+          }
+        }
+
+        &#{$smm}right {
+          @keyframes anim-spin-right {
+            0% {
+              transform: rotate(0deg);
             }
             100% {
               transform: rotate(360deg);
             }
           }
         }
+      }
 
-        &#{$smm}right {
-          @keyframes anim {
+      &pendulum {
+        &#{$smm}left {
+          @keyframes anim-pendulum-left {
             0% {
-              transform: rotate(0);
+              transform: rotate(0deg);
+            }
+            25% {
+              transform: rotate(-25deg);
+            }
+            80% {
+              transform: rotate(5deg);
+            }
+            90% {
+              transform: rotate(0deg);
             }
             100% {
-              transform: rotate(360deg);
+              transform: rotate(0deg);
+            }
+          }
+        }
+
+        &#{$smm}right {
+          @keyframes anim-pendulum-right {
+            0% {
+              transform: rotate(0deg);
+            }
+            25% {
+              transform: rotate(25deg);
+            }
+            80% {
+              transform: rotate(-5deg);
+            }
+            90% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(0deg);
             }
           }
         }

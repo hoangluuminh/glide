@@ -1,3 +1,11 @@
+const ANIMATIONS = [
+  'spin',
+  'pendulum',
+  'bounceInward',
+  'bounceUpward',
+  'bounceDownward'
+]
+
 export function getBeforeMoveIndex (Glide, Components) {
   const newIndex = Glide.index
   return newIndex
@@ -11,7 +19,7 @@ export function performMoveAnimation (Glide, Components, beforeMoveIndex) {
   const swipeAnimation = Glide.settings.swipeAnimation
   const animationDuration = Glide.settings.animationDuration
 
-  if (swipeAnimation == null) {
+  if (!swipeAnimation || !ANIMATIONS.includes(swipeAnimation)) {
     return
   }
 
@@ -29,7 +37,7 @@ export function performMoveAnimation (Glide, Components, beforeMoveIndex) {
   slides.forEach(_slide => {
     void _slide.offsetWidth
     _slide.classList.add(`glide__slide--anim-${animationStyle}`)
-    _slide.style.animation = `anim ${animationDuration}ms ease-in-out both`
+    _slide.style.animation = `anim-${animationStyle} ${animationDuration}ms ease-in-out both`
   })
 }
 

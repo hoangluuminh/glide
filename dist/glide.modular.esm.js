@@ -959,6 +959,8 @@ function isInRange(value, rangeStart, rangeEnd) {
   return value >= rangeStart && value <= rangeEnd;
 }
 
+var ANIMATIONS = ['spin', 'pendulum', 'bounceInward', 'bounceUpward', 'bounceDownward'];
+
 function getBeforeMoveIndex(Glide, Components) {
   var newIndex = Glide.index;
   return newIndex;
@@ -972,7 +974,7 @@ function performMoveAnimation(Glide, Components, beforeMoveIndex) {
   var swipeAnimation = Glide.settings.swipeAnimation;
   var animationDuration = Glide.settings.animationDuration;
 
-  if (swipeAnimation == null) {
+  if (!swipeAnimation || !ANIMATIONS.includes(swipeAnimation)) {
     return;
   }
 
@@ -992,7 +994,7 @@ function performMoveAnimation(Glide, Components, beforeMoveIndex) {
   slides.forEach(function (_slide) {
     void _slide.offsetWidth;
     _slide.classList.add('glide__slide--anim-' + animationStyle);
-    _slide.style.animation = 'anim ' + animationDuration + 'ms ease-in-out both';
+    _slide.style.animation = 'anim-' + animationStyle + ' ' + animationDuration + 'ms ease-in-out both';
   });
 }
 

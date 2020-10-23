@@ -24,7 +24,7 @@ class App extends React.Component {
         direction: "ltr",
         peek: 100,
         //CUSTOM
-        swipeAnimation: 'pendulum'
+        swipeAnimation: ''
       },
     };
   }

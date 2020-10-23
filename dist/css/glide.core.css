@@ -35,20 +35,42 @@
       -webkit-user-drag: none;
       -moz-user-select: none;
       -ms-user-select: none; }
-    .glide__slide--anim-pendulum-left {
-      animation-direction: reverse !important; }
 
-@keyframes anim {
+@keyframes anim-spin-left {
   0% {
-    transform: rotate(0); }
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(-360deg); } }
+
+@keyframes anim-spin-right {
+  0% {
+    transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
 
-@keyframes anim {
+@keyframes anim-pendulum-left {
   0% {
-    transform: rotate(0); }
+    transform: rotate(0deg); }
+  25% {
+    transform: rotate(-25deg); }
+  80% {
+    transform: rotate(5deg); }
+  90% {
+    transform: rotate(0deg); }
   100% {
-    transform: rotate(360deg); } }
+    transform: rotate(0deg); } }
+
+@keyframes anim-pendulum-right {
+  0% {
+    transform: rotate(0deg); }
+  25% {
+    transform: rotate(25deg); }
+  80% {
+    transform: rotate(-5deg); }
+  90% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(0deg); } }
   .glide__arrows {
     -webkit-touch-callout: none;
     user-select: none; }
