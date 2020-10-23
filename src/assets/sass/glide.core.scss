@@ -58,10 +58,9 @@
     &#{$sm}anim#{$smm} {
       &pendulum {
         &#{$smm}left {
-          animation: anim1 400ms ease-in-out both;
-          animation-direction: reverse;
+          animation-direction: reverse !important;
 
-          @keyframes anim1 {
+          @keyframes anim-pendulum-left {
             0% {
               transform: rotate(0);
             }
@@ -72,9 +71,7 @@
         }
 
         &#{$smm}right {
-          animation: anim2 400ms ease-in-out both;
-
-          @keyframes anim2 {
+          @keyframes anim-pendulum-right {
             0% {
               transform: rotate(0);
             }

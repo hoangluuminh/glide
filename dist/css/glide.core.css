@@ -36,18 +36,15 @@
       -moz-user-select: none;
       -ms-user-select: none; }
     .glide__slide--anim-pendulum-left {
-      animation: anim1 400ms ease-in-out both;
-      animation-direction: reverse; }
+      animation-direction: reverse !important; }
 
-@keyframes anim1 {
+@keyframes anim-pendulum-left {
   0% {
     transform: rotate(0); }
   100% {
     transform: rotate(360deg); } }
-    .glide__slide--anim-pendulum-right {
-      animation: anim2 400ms ease-in-out both; }
 
-@keyframes anim2 {
+@keyframes anim-pendulum-right {
   0% {
     transform: rotate(0); }
   100% {

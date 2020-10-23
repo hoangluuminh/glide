@@ -979,6 +979,7 @@ function performMoveAnimation(Glide, Components, beforeMoveIndex) {
   slides.forEach(function (_slide) {
     void _slide.offsetWidth;
     _slide.classList.add('glide__slide--anim-' + animationStyle);
+    _slide.style.animation = 'anim-' + animationStyle + ' ' + animationDuration + 'ms ease-in-out both';
   });
 }
 
@@ -988,6 +989,7 @@ function completeMoveAnimation(Glide, Components) {
     _slide.className.split(' ').forEach(function (className) {
       if (className.match(/^glide__slide--anim-/)) {
         _slide.classList.remove(className);
+        _slide.style.animation = '';
       }
     });
   });
