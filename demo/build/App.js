@@ -1,5 +1,7 @@
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -18,27 +20,25 @@ var App = function (_React$Component) {
       glide: null,
       glideOptions: null
     };
-
-    _this.state = {
-      glideOptions: {
-        type: "slider",
-        startAt: 0,
-        focusAt: "0",
-        perView: 3,
-        gap: 10,
-        autoplay: 3000,
-        hoverpause: true,
-        keyboard: true,
-        bound: true,
-        animationDuration: 400,
-        rewind: true,
-        rewindDuration: 500,
-        animationTimingFunc: "$$bounce",
-        direction: "ltr",
-        peek: 100,
-        //CUSTOM
-        swipeAnimation: ''
-      }
+    _this.defaultOptions = {
+      startAt: 0,
+      perView: 3,
+      gap: 10,
+      autoplay: 3000,
+      hoverpause: true,
+      keyboard: true,
+      bound: true,
+      animationDuration: 400,
+      rewind: true,
+      rewindDuration: 500,
+      peek: 100
+    };
+    _this.availableOptions = {
+      type: ["slider", "carousel"],
+      focusAt: ["center", 0],
+      animationTimingFunc: ["linear", "ease", "ease-in", "ease-out", "ease-in-out", "$$bounce", "$$retro"],
+      direction: ["ltr", "rtl"],
+      swipeAnimation: ["", "spin", "pendulum", "bounceInward", "bounceUpward", "bounceDownward", "flip", "fade", "CUSTOMANIM"]
     };
     return _this;
   }
@@ -46,7 +46,7 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var g = this.glideFactory(this.state.glideOptions);
+      var g = this.glideFactory(this.glideOptionsFactory());
       g.mount();
       this.setState({ glide: g });
     }
@@ -66,30 +66,6 @@ var App = function (_React$Component) {
       return React.createElement(
         "content",
         null,
-        React.createElement(
-          "div",
-          { className: "options" },
-          this.state.glideOptions && Object.keys(this.state.glideOptions).map(function (optionKey) {
-            var option = _this2.state.glideOptions[optionKey];
-            return React.createElement(
-              React.Fragment,
-              { key: "glideOptions_" + optionKey },
-              React.createElement(
-                "label",
-                { htmlFor: optionKey },
-                optionKey
-              ),
-              React.createElement("input", {
-                type: "text",
-                name: optionKey,
-                value: option,
-                onChange: function onChange(e) {
-                  return _this2.handleOnChangeGlideOptions(e, optionKey);
-                }
-              })
-            );
-          })
-        ),
         React.createElement(
           "div",
           { className: "glide" },
@@ -185,12 +161,88 @@ var App = function (_React$Component) {
             React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=8" }),
             React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=9" })
           )
+        ),
+        React.createElement(
+          "div",
+          { className: "options" },
+          this.state.glideOptions && Object.keys(this.state.glideOptions).map(function (optionKey) {
+            var option = _this2.state.glideOptions[optionKey];
+            if (Object.keys(_this2.availableOptions).includes(optionKey)) {
+              return React.createElement(
+                "div",
+                { key: "glideOptions_" + optionKey },
+                React.createElement(
+                  "label",
+                  { htmlFor: optionKey },
+                  optionKey
+                ),
+                React.createElement(
+                  "select",
+                  {
+                    name: optionKey,
+                    value: option,
+                    onChange: function onChange(e) {
+                      return _this2.handleOnChangeGlideOptions(e, optionKey);
+                    }
+                  },
+                  _this2.availableOptions[optionKey].map(function (optionSelect) {
+                    return React.createElement(
+                      "option",
+                      {
+                        key: "glideOptions_" + optionKey + "_" + optionSelect,
+                        value: optionSelect
+                      },
+                      optionSelect
+                    );
+                  })
+                )
+              );
+            }
+
+            return React.createElement(
+              "div",
+              { key: "glideOptions_" + optionKey },
+              React.createElement(
+                "label",
+                { htmlFor: optionKey },
+                optionKey
+              ),
+              React.createElement("input", {
+                type: "text",
+                name: optionKey,
+                value: option,
+                onChange: function onChange(e) {
+                  return _this2.handleOnChangeGlideOptions(e, optionKey);
+                }
+              })
+            );
+          })
         )
       );
     }
 
     // Methods
 
+  }, {
+    key: "glideOptionsFactory",
+    value: function glideOptionsFactory() {
+      var _this3 = this;
+
+      var newOptions = {};
+
+      Object.keys(this.defaultOptions).forEach(function (optionKey) {
+        var option = _this3.defaultOptions[optionKey];
+        newOptions = Object.assign({}, newOptions, _defineProperty({}, optionKey, option));
+      });
+      Object.keys(this.availableOptions).forEach(function (optionKey) {
+        var option = _this3.availableOptions[optionKey];
+        newOptions = Object.assign({}, newOptions, _defineProperty({}, optionKey, option[0]));
+      });
+
+      this.setState({ glideOptions: newOptions });
+
+      return newOptions;
+    }
   }, {
     key: "glideFactory",
     value: function glideFactory(options) {

@@ -4,33 +4,44 @@ class App extends React.Component {
     glideOptions: null,
   };
 
+  defaultOptions = {
+    startAt: 0,
+    perView: 3,
+    gap: 10,
+    autoplay: 3000,
+    hoverpause: true,
+    keyboard: true,
+    bound: true,
+    animationDuration: 400,
+    rewind: true,
+    rewindDuration: 500,
+    peek: 100,
+  };
+
+  availableOptions = {
+    type: ["slider", "carousel"],
+    focusAt: ["center", 0],
+    animationTimingFunc: ["linear", "ease", "ease-in", "ease-out", "ease-in-out", "$$bounce", "$$retro"],
+    direction: ["ltr", "rtl"],
+    swipeAnimation: [
+      "",
+      "spin",
+      "pendulum",
+      "bounceInward",
+      "bounceUpward",
+      "bounceDownward",
+      "flip",
+      "fade",
+      "CUSTOMANIM",
+    ],
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      glideOptions: {
-        type: "slider",
-        startAt: 0,
-        focusAt: "0",
-        perView: 3,
-        gap: 10,
-        autoplay: 3000,
-        hoverpause: true,
-        keyboard: true,
-        bound: true,
-        animationDuration: 400,
-        rewind: true,
-        rewindDuration: 500,
-        animationTimingFunc: "$$bounce",
-        direction: "ltr",
-        peek: 100,
-        //CUSTOM
-        swipeAnimation: ''
-      },
-    };
   }
 
   componentDidMount() {
-    const g = this.glideFactory(this.state.glideOptions);
+    const g = this.glideFactory(this.glideOptionsFactory());
     g.mount();
     this.setState({ glide: g });
   }
@@ -45,26 +56,6 @@ class App extends React.Component {
   render() {
     return (
       <content>
-        <div className="options">
-          {this.state.glideOptions &&
-            Object.keys(this.state.glideOptions).map((optionKey) => {
-              const option = this.state.glideOptions[optionKey];
-              return (
-                <React.Fragment key={`glideOptions_${optionKey}`}>
-                  <label htmlFor={optionKey}>{optionKey}</label>
-                  <input
-                    type="text"
-                    name={optionKey}
-                    value={option}
-                    onChange={(e) =>
-                      this.handleOnChangeGlideOptions(e, optionKey)
-                    }
-                  ></input>
-                </React.Fragment>
-              );
-            })}
-        </div>
-
         <div className="glide">
           <div className="glide__track" data-glide-el="track">
             <ul className="glide__slides">
@@ -127,11 +118,72 @@ class App extends React.Component {
             <button className="glide__bullet" data-glide-dir="=9"></button>
           </div>
         </div>
+
+        <div className="options">
+          {this.state.glideOptions &&
+            Object.keys(this.state.glideOptions).map((optionKey) => {
+              const option = this.state.glideOptions[optionKey];
+              if (Object.keys(this.availableOptions).includes(optionKey)) {
+                return (
+                  <div key={`glideOptions_${optionKey}`}>
+                    <label htmlFor={optionKey}>{optionKey}</label>
+                    <select
+                      name={optionKey}
+                      value={option}
+                      onChange={(e) =>
+                        this.handleOnChangeGlideOptions(e, optionKey)
+                      }
+                    >
+                      {this.availableOptions[optionKey].map((optionSelect) => (
+                        <option
+                          key={`glideOptions_${optionKey}_${optionSelect}`}
+                          value={optionSelect}
+                        >
+                          {optionSelect}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                );
+              }
+
+              return (
+                <div key={`glideOptions_${optionKey}`}>
+                  <label htmlFor={optionKey}>{optionKey}</label>
+                  <input
+                    type="text"
+                    name={optionKey}
+                    value={option}
+                    onChange={(e) =>
+                      this.handleOnChangeGlideOptions(e, optionKey)
+                    }
+                  ></input>
+                </div>
+              );
+            })}
+        </div>
       </content>
     );
   }
 
   // Methods
+
+  glideOptionsFactory() {
+    let newOptions = {};
+
+    Object.keys(this.defaultOptions).forEach((optionKey) => {
+      const option = this.defaultOptions[optionKey];
+      newOptions = { ...newOptions, [optionKey]: option };
+    });
+    Object.keys(this.availableOptions).forEach((optionKey) => {
+      const option = this.availableOptions[optionKey];
+      newOptions = { ...newOptions, [optionKey]: option[0] };
+    });
+
+    this.setState({ glideOptions: newOptions });
+
+    return newOptions;
+  }
 
   glideFactory(options) {
     const glide = new Glide(".glide", options);
