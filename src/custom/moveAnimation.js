@@ -1,11 +1,3 @@
-const ANIMATIONS = [
-  'spin',
-  'pendulum',
-  'bounceInward',
-  'bounceUpward',
-  'bounceDownward'
-]
-
 export function getBeforeMoveIndex (Glide, Components) {
   const newIndex = Glide.index
   return newIndex
