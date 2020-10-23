@@ -4,19 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MODIFIED Glide Demo</title>
+  <title>Glide Demo</title>
 
 
   <!-- JavaScript-->
-  <script src="../dist/glide.js"></script>
+  <script src="./dist/glide.js"></script>
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
   <!-- Required Core Stylesheet -->
-  <link rel="stylesheet" href="../dist/css/glide.core.min.css">
+  <link rel="stylesheet" href="./dist/css/glide.core.min.css">
 
   <!-- Optional Theme Stylesheet -->
-  <link rel="stylesheet" href="../dist/css/glide.theme.min.css">
+  <link rel="stylesheet" href="./dist/css/glide.theme.min.css">
 
   <style>
     * {
@@ -48,11 +48,6 @@
       transition: transform 0.5s, opacity 0.5s;
     }
 
-    .glide__slide--peek {
-      transform: scale(0.9);
-      opacity: 0.5;
-    }
-
     .glide__slides {
       height: 100%;
     }
@@ -65,50 +60,6 @@
       object-fit: cover;
       height: 100%;
       width: 100%;
-    }
-
-    @keyframes anim-CUSTOMANIM-left {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      25% {
-        transform: rotate(360deg);
-      }
-
-      50% {
-        transform: rotate(0deg);
-      }
-
-      75% {
-        transform: rotate(360deg);
-      }
-
-      100% {
-        transform: rotate(0deg);
-      }
-    }
-
-    @keyframes anim-CUSTOMANIM-right {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      25% {
-        transform: rotate(-360deg);
-      }
-
-      50% {
-        transform: rotate(0deg);
-      }
-
-      75% {
-        transform: rotate(-360deg);
-      }
-
-      100% {
-        transform: rotate(0deg);
-      }
     }
   </style>
 </head>
