@@ -8,15 +8,20 @@ export function performMoveAnimation (Glide, Components, beforeMoveIndex) {
   let animationStyle = ''
 
   let slides = Components.Html.slides
+  const swipeAnimation = Glide.settings.swipeAnimation
   const animationDuration = Glide.settings.animationDuration
+
+  if (swipeAnimation == null) {
+    return
+  }
 
   switch (directionStr) {
     case '<': {
-      animationStyle = 'pendulum-left'
+      animationStyle = `${swipeAnimation}-left`
       break
     }
     case '>': {
-      animationStyle = 'pendulum-right'
+      animationStyle = `${swipeAnimation}-right`
       break
     }
   }
@@ -24,7 +29,7 @@ export function performMoveAnimation (Glide, Components, beforeMoveIndex) {
   slides.forEach(_slide => {
     void _slide.offsetWidth
     _slide.classList.add(`glide__slide--anim-${animationStyle}`)
-    _slide.style.animation = `anim-${animationStyle} ${animationDuration}ms ease-in-out both`
+    _slide.style.animation = `anim ${animationDuration}ms ease-in-out both`
   })
 }
 

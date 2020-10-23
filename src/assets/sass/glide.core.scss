@@ -60,7 +60,7 @@
         &#{$smm}left {
           animation-direction: reverse !important;
 
-          @keyframes anim-pendulum-left {
+          @keyframes anim {
             0% {
               transform: rotate(0);
             }
@@ -71,7 +71,7 @@
         }
 
         &#{$smm}right {
-          @keyframes anim-pendulum-right {
+          @keyframes anim {
             0% {
               transform: rotate(0);
             }

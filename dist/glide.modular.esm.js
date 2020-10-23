@@ -204,6 +204,14 @@ var defaults = {
   breakpoints: {},
 
   /**
+   * CUSTOM
+   * Defines animation to be used upon swiping / moving
+   *
+   * @type {String}
+   */
+  swipeAnimation: '',
+
+  /**
    * Collection of internally used HTML classes.
    *
    * @todo Refactor `slider` and `carousel` properties to single `type: { slider: '', carousel: '' }` object
@@ -961,17 +969,22 @@ function performMoveAnimation(Glide, Components, beforeMoveIndex) {
   var animationStyle = '';
 
   var slides = Components.Html.slides;
+  var swipeAnimation = Glide.settings.swipeAnimation;
   var animationDuration = Glide.settings.animationDuration;
+
+  if (swipeAnimation == null) {
+    return;
+  }
 
   switch (directionStr) {
     case '<':
       {
-        animationStyle = 'pendulum-left';
+        animationStyle = swipeAnimation + '-left';
         break;
       }
     case '>':
       {
-        animationStyle = 'pendulum-right';
+        animationStyle = swipeAnimation + '-right';
         break;
       }
   }
@@ -979,7 +992,7 @@ function performMoveAnimation(Glide, Components, beforeMoveIndex) {
   slides.forEach(function (_slide) {
     void _slide.offsetWidth;
     _slide.classList.add('glide__slide--anim-' + animationStyle);
-    _slide.style.animation = 'anim-' + animationStyle + ' ' + animationDuration + 'ms ease-in-out both';
+    _slide.style.animation = 'anim ' + animationDuration + 'ms ease-in-out both';
   });
 }
 

@@ -38,13 +38,13 @@
     .glide__slide--anim-pendulum-left {
       animation-direction: reverse !important; }
 
-@keyframes anim-pendulum-left {
+@keyframes anim {
   0% {
     transform: rotate(0); }
   100% {
     transform: rotate(360deg); } }
 
-@keyframes anim-pendulum-right {
+@keyframes anim {
   0% {
     transform: rotate(0); }
   100% {

@@ -23,6 +23,8 @@ class App extends React.Component {
         animationTimingFunc: "$$bounce",
         direction: "ltr",
         peek: 100,
+        //CUSTOM
+        swipeAnimation: 'pendulum'
       },
     };
   }

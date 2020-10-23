@@ -35,7 +35,9 @@ var App = function (_React$Component) {
         rewindDuration: 500,
         animationTimingFunc: "$$bounce",
         direction: "ltr",
-        peek: 100
+        peek: 100,
+        //CUSTOM
+        swipeAnimation: 'pendulum'
       }
     };
     return _this;

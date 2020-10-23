@@ -198,6 +198,14 @@ export default {
   breakpoints: {},
 
   /**
+   * CUSTOM
+   * Defines animation to be used upon swiping / moving
+   *
+   * @type {String}
+   */
+  swipeAnimation: '',
+
+  /**
    * Collection of internally used HTML classes.
    *
    * @todo Refactor `slider` and `carousel` properties to single `type: { slider: '', carousel: '' }` object
