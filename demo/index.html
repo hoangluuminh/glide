@@ -21,6 +21,12 @@
   <style>
     * {
       box-sizing: border-box;
+      font-family: "Helvetica";
+    }
+
+    body {
+      margin: 0;
+      font-size: 13px;
     }
 
     content {
@@ -29,12 +35,22 @@
       flex-direction: column;
     }
 
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      background: #ffd600;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      font-size: 16px;
+    }
+
     .options {
       display: flex;
       flex-wrap: wrap;
     }
 
-    .options > * {
+    .options>* {
       display: flex;
       flex-direction: column;
       width: 153px;
@@ -42,6 +58,7 @@
 
     .glide {
       height: 500px;
+      margin: 50px 0;
     }
 
     .glide__slide {

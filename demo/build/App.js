@@ -64,110 +64,153 @@ var App = function (_React$Component) {
       var _this2 = this;
 
       return React.createElement(
-        "content",
+        React.Fragment,
         null,
         React.createElement(
-          "div",
-          { className: "glide" },
+          "header",
+          null,
           React.createElement(
-            "div",
-            { className: "glide__track", "data-glide-el": "track" },
-            React.createElement(
-              "ul",
-              { className: "glide__slides" },
-              React.createElement(
-                "li",
-                { className: "glide__slide" },
-                React.createElement("img", { src: "./img/img01.jpg", alt: "01", height: "500" })
-              ),
-              React.createElement(
-                "li",
-                { className: "glide__slide" },
-                React.createElement("img", { src: "./img/img02.jpg", alt: "02", height: "500" })
-              ),
-              React.createElement(
-                "li",
-                { className: "glide__slide" },
-                React.createElement("img", { src: "./img/img03.jpg", alt: "03", height: "500" })
-              ),
-              React.createElement(
-                "li",
-                { className: "glide__slide" },
-                React.createElement("img", { src: "./img/img04.jpg", alt: "04", height: "500" })
-              ),
-              React.createElement(
-                "li",
-                { className: "glide__slide" },
-                React.createElement("img", { src: "./img/img05.jpg", alt: "05", height: "500" })
-              ),
-              React.createElement(
-                "li",
-                { className: "glide__slide" },
-                React.createElement("img", { src: "./img/img01.jpg", alt: "01", height: "500" })
-              ),
-              React.createElement(
-                "li",
-                { className: "glide__slide" },
-                React.createElement("img", { src: "./img/img02.jpg", alt: "02", height: "500" })
-              ),
-              React.createElement(
-                "li",
-                { className: "glide__slide" },
-                React.createElement("img", { src: "./img/img03.jpg", alt: "03", height: "500" })
-              ),
-              React.createElement(
-                "li",
-                { className: "glide__slide" },
-                React.createElement("img", { src: "./img/img04.jpg", alt: "04", height: "500" })
-              ),
-              React.createElement(
-                "li",
-                { className: "glide__slide" },
-                React.createElement("img", { src: "./img/img05.jpg", alt: "05", height: "500" })
-              )
-            )
-          ),
-          React.createElement(
-            "div",
-            { className: "glide__arrows", "data-glide-el": "controls" },
-            React.createElement(
-              "button",
-              {
-                className: "glide__arrow glide__arrow--left",
-                "data-glide-dir": "<"
-              },
-              "prev"
-            ),
-            React.createElement(
-              "button",
-              {
-                className: "glide__arrow glide__arrow--right",
-                "data-glide-dir": ">"
-              },
-              "next"
-            )
-          ),
-          React.createElement(
-            "div",
-            { className: "glide__bullets", "data-glide-el": "controls[nav]" },
-            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=0" }),
-            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=1" }),
-            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=2" }),
-            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=3" }),
-            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=4" }),
-            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=5" }),
-            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=6" }),
-            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=7" }),
-            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=8" }),
-            React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=9" })
+            "p",
+            null,
+            "Modified version of Glide.js by Nh\xF3m 3 - PTPM_MNM"
           )
         ),
         React.createElement(
-          "div",
-          { className: "options" },
-          this.state.glideOptions && Object.keys(this.state.glideOptions).map(function (optionKey) {
-            var option = _this2.state.glideOptions[optionKey];
-            if (Object.keys(_this2.availableOptions).includes(optionKey)) {
+          "content",
+          null,
+          React.createElement(
+            "div",
+            { className: "glide" },
+            React.createElement(
+              "div",
+              { className: "glide__track", "data-glide-el": "track" },
+              React.createElement(
+                "ul",
+                { className: "glide__slides" },
+                React.createElement(
+                  "li",
+                  { className: "glide__slide" },
+                  React.createElement("img", { src: "./img/img01.jpg", alt: "01", height: "500" })
+                ),
+                React.createElement(
+                  "li",
+                  { className: "glide__slide" },
+                  React.createElement("img", { src: "./img/img02.jpg", alt: "02", height: "500" })
+                ),
+                React.createElement(
+                  "li",
+                  { className: "glide__slide" },
+                  React.createElement("img", { src: "./img/img03.jpg", alt: "03", height: "500" })
+                ),
+                React.createElement(
+                  "li",
+                  { className: "glide__slide" },
+                  React.createElement("img", { src: "./img/img04.jpg", alt: "04", height: "500" })
+                ),
+                React.createElement(
+                  "li",
+                  { className: "glide__slide" },
+                  React.createElement("img", { src: "./img/img05.jpg", alt: "05", height: "500" })
+                ),
+                React.createElement(
+                  "li",
+                  { className: "glide__slide" },
+                  React.createElement("img", { src: "./img/img01.jpg", alt: "01", height: "500" })
+                ),
+                React.createElement(
+                  "li",
+                  { className: "glide__slide" },
+                  React.createElement("img", { src: "./img/img02.jpg", alt: "02", height: "500" })
+                ),
+                React.createElement(
+                  "li",
+                  { className: "glide__slide" },
+                  React.createElement("img", { src: "./img/img03.jpg", alt: "03", height: "500" })
+                ),
+                React.createElement(
+                  "li",
+                  { className: "glide__slide" },
+                  React.createElement("img", { src: "./img/img04.jpg", alt: "04", height: "500" })
+                ),
+                React.createElement(
+                  "li",
+                  { className: "glide__slide" },
+                  React.createElement("img", { src: "./img/img05.jpg", alt: "05", height: "500" })
+                )
+              )
+            ),
+            React.createElement(
+              "div",
+              { className: "glide__arrows", "data-glide-el": "controls" },
+              React.createElement(
+                "button",
+                {
+                  className: "glide__arrow glide__arrow--left",
+                  "data-glide-dir": "<"
+                },
+                "prev"
+              ),
+              React.createElement(
+                "button",
+                {
+                  className: "glide__arrow glide__arrow--right",
+                  "data-glide-dir": ">"
+                },
+                "next"
+              )
+            ),
+            React.createElement(
+              "div",
+              { className: "glide__bullets", "data-glide-el": "controls[nav]" },
+              React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=0" }),
+              React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=1" }),
+              React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=2" }),
+              React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=3" }),
+              React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=4" }),
+              React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=5" }),
+              React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=6" }),
+              React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=7" }),
+              React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=8" }),
+              React.createElement("button", { className: "glide__bullet", "data-glide-dir": "=9" })
+            )
+          ),
+          React.createElement(
+            "div",
+            { className: "options" },
+            this.state.glideOptions && Object.keys(this.state.glideOptions).map(function (optionKey) {
+              var option = _this2.state.glideOptions[optionKey];
+              if (Object.keys(_this2.availableOptions).includes(optionKey)) {
+                return React.createElement(
+                  "div",
+                  { key: "glideOptions_" + optionKey },
+                  React.createElement(
+                    "label",
+                    { htmlFor: optionKey },
+                    optionKey
+                  ),
+                  React.createElement(
+                    "select",
+                    {
+                      name: optionKey,
+                      value: option,
+                      onChange: function onChange(e) {
+                        return _this2.handleOnChangeGlideOptions(e, optionKey);
+                      }
+                    },
+                    _this2.availableOptions[optionKey].map(function (optionSelect) {
+                      return React.createElement(
+                        "option",
+                        {
+                          key: "glideOptions_" + optionKey + "_" + optionSelect,
+                          value: optionSelect
+                        },
+                        optionSelect
+                      );
+                    })
+                  )
+                );
+              }
+
               return React.createElement(
                 "div",
                 { key: "glideOptions_" + optionKey },
@@ -176,47 +219,17 @@ var App = function (_React$Component) {
                   { htmlFor: optionKey },
                   optionKey
                 ),
-                React.createElement(
-                  "select",
-                  {
-                    name: optionKey,
-                    value: option,
-                    onChange: function onChange(e) {
-                      return _this2.handleOnChangeGlideOptions(e, optionKey);
-                    }
-                  },
-                  _this2.availableOptions[optionKey].map(function (optionSelect) {
-                    return React.createElement(
-                      "option",
-                      {
-                        key: "glideOptions_" + optionKey + "_" + optionSelect,
-                        value: optionSelect
-                      },
-                      optionSelect
-                    );
-                  })
-                )
+                React.createElement("input", {
+                  type: "text",
+                  name: optionKey,
+                  value: option,
+                  onChange: function onChange(e) {
+                    return _this2.handleOnChangeGlideOptions(e, optionKey);
+                  }
+                })
               );
-            }
-
-            return React.createElement(
-              "div",
-              { key: "glideOptions_" + optionKey },
-              React.createElement(
-                "label",
-                { htmlFor: optionKey },
-                optionKey
-              ),
-              React.createElement("input", {
-                type: "text",
-                name: optionKey,
-                value: option,
-                onChange: function onChange(e) {
-                  return _this2.handleOnChangeGlideOptions(e, optionKey);
-                }
-              })
-            );
-          })
+            })
+          )
         )
       );
     }
