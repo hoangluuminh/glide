@@ -1,6 +1,8 @@
 import { warn } from '../utils/log'
 import { toInt } from '../utils/unit'
 import { define } from '../utils/object'
+import { addSlidePeekClass } from '../custom/slidePeekClass'
+import { completeMoveAnimation, getBeforeMoveIndex, performMoveAnimation } from '../custom/moveAnimation'
 
 export default function (Glide, Components, Events) {
   const Run = {
@@ -26,9 +28,16 @@ export default function (Glide, Components, Events) {
 
         Events.emit('run.before', this.move)
 
+        // CUSTOM
+        const beforeMoveIndex = getBeforeMoveIndex(Glide, Components)
+
         this.calculate()
 
         Events.emit('run', this.move)
+
+        // CUSTOM
+        addSlidePeekClass(Glide, Components)
+        performMoveAnimation(Glide, Components, beforeMoveIndex)
 
         Components.Transition.after(() => {
           if (this.isStart()) {
@@ -46,6 +55,9 @@ export default function (Glide, Components, Events) {
           }
 
           Events.emit('run.after', this.move)
+
+          // CUSTOM
+          completeMoveAnimation(Glide, Components)
 
           Glide.enable()
         })

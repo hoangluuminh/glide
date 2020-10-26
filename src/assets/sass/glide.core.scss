@@ -5,6 +5,7 @@
 
   $se: $glide-element-separator;
   $sm: $glide-modifier-separator;
+  $smm: "-";
 
   position: relative;
   width: 100%;
@@ -52,6 +53,224 @@
       -webkit-user-drag: none;
       -moz-user-select: none;
       -ms-user-select: none;
+    }
+
+    &#{$sm}anim#{$smm} {
+      &spin {
+        &#{$smm}left {
+          @keyframes anim-spin-left {
+            0% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(-360deg);
+            }
+          }
+        }
+
+        &#{$smm}right {
+          @keyframes anim-spin-right {
+            0% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+        }
+      }
+
+      &pendulum {
+        &#{$smm}left {
+          @keyframes anim-pendulum-left {
+            0% {
+              transform: rotate(0deg);
+            }
+            25% {
+              transform: rotate(-25deg);
+            }
+            80% {
+              transform: rotate(5deg);
+            }
+            90% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(0deg);
+            }
+          }
+        }
+
+        &#{$smm}right {
+          @keyframes anim-pendulum-right {
+            0% {
+              transform: rotate(0deg);
+            }
+            25% {
+              transform: rotate(25deg);
+            }
+            80% {
+              transform: rotate(-5deg);
+            }
+            90% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(0deg);
+            }
+          }
+        }
+      }
+
+      &bounceInward {
+        &#{$smm}left {
+          @keyframes anim-bounceInward-left {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(0.75);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+        }
+
+        &#{$smm}right {
+          @keyframes anim-bounceInward-right {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(0.75);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+        }
+      }
+
+      &bounceUpward {
+        &#{$smm}left {
+          @keyframes anim-bounceUpward-left {
+            0% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-100px);
+            }
+            100% {
+              transform: translateY(0px);
+            }
+          }
+        }
+
+        &#{$smm}right {
+          @keyframes anim-bounceUpward-right {
+            0% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-100px);
+            }
+            100% {
+              transform: translateY(0px);
+            }
+          }
+        }
+      }
+
+      &bounceDownward {
+        &#{$smm}left {
+          @keyframes anim-bounceDownward-left {
+            0% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(100px);
+            }
+            100% {
+              transform: translateY(0px);
+            }
+          }
+        }
+
+        &#{$smm}right {
+          @keyframes anim-bounceDownward-right {
+            0% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(100px);
+            }
+            100% {
+              transform: translateY(0px);
+            }
+          }
+        }
+      }
+
+      &flip {
+        &#{$smm}left {
+          @keyframes anim-flip-left {
+            0% {
+              transform: rotateY(0deg);
+            }
+            100% {
+              transform: rotateY(-360deg);
+            }
+          }
+        }
+
+        &#{$smm}right {
+          @keyframes anim-flip-right {
+            0% {
+              transform: rotateY(0deg);
+            }
+            100% {
+              transform: rotateY(360deg);
+            }
+          }
+        }
+      }
+
+      &fade {
+        &#{$smm}left {
+          @keyframes anim-fade-left {
+            0% {
+              opacity: 1;
+            }
+            20% {
+              opacity: 0;
+            }
+            60% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+        }
+
+        &#{$smm}right {
+          @keyframes anim-fade-right {
+            0% {
+              opacity: 1;
+            }
+            20% {
+              opacity: 0;
+            }
+            60% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+        }
+      }
     }
   }
 

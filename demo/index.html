@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MODIFIED Glide Demo</title>
+
+
+  <!-- JavaScript-->
+  <script src="../dist/glide.js"></script>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- Required Core Stylesheet -->
+  <link rel="stylesheet" href="../dist/css/glide.core.min.css">
+
+  <!-- Optional Theme Stylesheet -->
+  <link rel="stylesheet" href="../dist/css/glide.theme.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Helvetica";
+    }
+
+    body {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    content {
+      display: flex;
+      width: 100vw;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      background: #ffd600;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      font-size: 16px;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .options>* {
+      display: flex;
+      flex-direction: column;
+      width: 153px;
+    }
+
+    .glide {
+      height: 500px;
+      margin: 50px 0;
+    }
+
+    .glide__slide {
+      transition: transform 0.5s, opacity 0.5s;
+    }
+
+    .glide__slide--peek {
+      transform: scale(0.9);
+      opacity: 0.5;
+    }
+
+    .glide__slides {
+      height: 100%;
+    }
+
+    .glide__track {
+      height: 100%;
+    }
+
+    .glide img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+
+    @keyframes anim-CUSTOMANIM-left {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      25% {
+        transform: rotate(360deg);
+      }
+
+      50% {
+        transform: rotate(0deg);
+      }
+
+      75% {
+        transform: rotate(360deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+
+    @keyframes anim-CUSTOMANIM-right {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      25% {
+        transform: rotate(-360deg);
+      }
+
+      50% {
+        transform: rotate(0deg);
+      }
+
+      75% {
+        transform: rotate(-360deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+  </div>
+
+  <script src="build/App.js"></script>
+</body>
+
+</html>

@@ -204,14 +204,6 @@ var defaults = {
   breakpoints: {},
 
   /**
-   * CUSTOM
-   * Defines animation to be used upon swiping / moving
-   *
-   * @type {String}
-   */
-  swipeAnimation: '',
-
-  /**
    * Collection of internally used HTML classes.
    *
    * @todo Refactor `slider` and `carousel` properties to single `type: { slider: '', carousel: '' }` object
@@ -230,8 +222,7 @@ var defaults = {
     },
     slide: {
       clone: 'glide__slide--clone',
-      active: 'glide__slide--active',
-      peek: 'glide__slide--peek'
+      active: 'glide__slide--active'
     },
     arrow: {
       disabled: 'glide__arrow--disabled'
@@ -922,104 +913,6 @@ var Glide = function () {
   return Glide;
 }();
 
-function addSlidePeekClass(Glide, Components) {
-  var _Glide$settings = Glide.settings,
-      perView = _Glide$settings.perView,
-      focusAt = _Glide$settings.focusAt;
-
-  var index = Glide.index;
-  var classes = Glide.settings.classes;
-
-  var rangeStart = 0;
-  var rangeEnd = 0;
-  if (focusAt === 'center') {
-    rangeStart = index - Math.floor(perView / 2);
-    rangeEnd = index + Math.floor(perView / 2);
-    if (perView % 2 === 0) {
-      // For even number of perView => Decrease range
-      rangeStart++;
-      rangeEnd--;
-    }
-  } else {
-    rangeStart = index - focusAt;
-    rangeEnd = index - focusAt + perView - 1;
-  }
-
-  for (var i = 0; i < Components.Html.slides.length; i += 1) {
-    var slide = Components.Html.slides[i];
-    slide.classList.remove(classes.slide.peek);
-
-    if (!isInRange(i, rangeStart, rangeEnd)) {
-      slide.classList.add(classes.slide.peek);
-    }
-  }
-}
-
-function isInRange(value, rangeStart, rangeEnd) {
-  return value >= rangeStart && value <= rangeEnd;
-}
-
-function getBeforeMoveIndex(Glide, Components) {
-  var newIndex = Glide.index;
-  return newIndex;
-}
-
-function performMoveAnimation(Glide, Components, beforeMoveIndex) {
-  var directionStr = determineMovingDirection(Glide, Components, beforeMoveIndex);
-  var animationStyle = '';
-
-  var slides = Components.Html.slides;
-  var swipeAnimation = Glide.settings.swipeAnimation;
-  var animationDuration = Glide.settings.animationDuration;
-
-  if (!swipeAnimation) {
-    return;
-  }
-
-  switch (directionStr) {
-    case '<':
-      {
-        animationStyle = swipeAnimation + '-left';
-        break;
-      }
-    case '>':
-      {
-        animationStyle = swipeAnimation + '-right';
-        break;
-      }
-  }
-
-  slides.forEach(function (_slide) {
-    void _slide.offsetWidth;
-    _slide.classList.add('glide__slide--anim-' + animationStyle);
-    _slide.style.animation = 'anim-' + animationStyle + ' ' + animationDuration + 'ms ease-in-out both';
-  });
-}
-
-function completeMoveAnimation(Glide, Components) {
-  var slides = Components.Html.slides;
-  slides.forEach(function (_slide) {
-    _slide.className.split(' ').forEach(function (className) {
-      if (className.match(/^glide__slide--anim-/)) {
-        _slide.classList.remove(className);
-        _slide.style.animation = '';
-      }
-    });
-  });
-}
-
-function determineMovingDirection(Glide, Components, oldIndex) {
-  var directionStr = '';
-
-  if (Glide.index >= oldIndex) {
-    directionStr = '>';
-  } else {
-    directionStr = '<';
-  }
-
-  return directionStr;
-}
-
 function Run (Glide, Components, Events) {
   var Run = {
     /**
@@ -1047,16 +940,9 @@ function Run (Glide, Components, Events) {
 
         Events.emit('run.before', this.move);
 
-        // CUSTOM
-        var beforeMoveIndex = getBeforeMoveIndex(Glide, Components);
-
         this.calculate();
 
         Events.emit('run', this.move);
-
-        // CUSTOM
-        addSlidePeekClass(Glide, Components);
-        performMoveAnimation(Glide, Components, beforeMoveIndex);
 
         Components.Transition.after(function () {
           if (_this.isStart()) {
@@ -1074,9 +960,6 @@ function Run (Glide, Components, Events) {
           }
 
           Events.emit('run.after', _this.move);
-
-          // CUSTOM
-          completeMoveAnimation(Glide, Components);
 
           Glide.enable();
         });
@@ -1975,8 +1858,6 @@ function Build (Glide, Components, Events) {
 
       this.typeClass();
       this.activeClass();
-      // CUSTOM
-      addSlidePeekClass(Glide, Components);
 
       Events.emit('build.after');
     },
@@ -2711,28 +2592,6 @@ function Translate (Glide, Components, Events) {
   return Translate;
 }
 
-var predefinedAnimations = {
-  '$$linear': 'linear',
-  '$$ease': 'ease',
-  '$$ease-in': 'ease-in',
-  '$$ease-out': 'ease-out',
-  '$$ease-in-out': 'ease-in-out',
-  '$$bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-  '$$retro': 'steps(5, end)'
-};
-
-function generateAnimationTimingFunc(timingFuncStr) {
-  var newTimingFuncStr = '';
-
-  if (predefinedAnimations[timingFuncStr] != null) {
-    newTimingFuncStr = predefinedAnimations[timingFuncStr];
-  } else {
-    newTimingFuncStr = timingFuncStr;
-  }
-
-  return newTimingFuncStr;
-}
-
 function Transition (Glide, Components, Events) {
   /**
    * Holds inactivity status of transition.
@@ -2753,10 +2612,7 @@ function Transition (Glide, Components, Events) {
       var settings = Glide.settings;
 
       if (!disabled) {
-        // CUSTOM
-        var animationTimingFunc = generateAnimationTimingFunc(settings.animationTimingFunc);
-
-        return property + ' ' + this.duration + 'ms ' + animationTimingFunc;
+        return property + ' ' + this.duration + 'ms ' + settings.animationTimingFunc;
       }
 
       return property + ' 0ms ' + settings.animationTimingFunc;
@@ -2905,7 +2761,7 @@ var MOVE_EVENTS = ['touchmove', 'mousemove'];
 var END_EVENTS = ['touchend', 'touchcancel', 'mouseup', 'mouseleave'];
 var MOUSE_EVENTS = ['mousedown', 'mousemove', 'mouseup', 'mouseleave'];
 
-function swipe (Glide, Components, Events) {
+function Swipe (Glide, Components, Events) {
   /**
    * Instance of the binder for DOM Events.
    *
@@ -3200,7 +3056,7 @@ function swipe (Glide, Components, Events) {
   return Swipe;
 }
 
-function images (Glide, Components, Events) {
+function Images (Glide, Components, Events) {
   /**
    * Instance of the binder for DOM Events.
    *
@@ -3261,7 +3117,7 @@ function images (Glide, Components, Events) {
   return Images;
 }
 
-function anchors (Glide, Components, Events) {
+function Anchors (Glide, Components, Events) {
   /**
    * Instance of the binder for DOM Events.
    *
@@ -3433,7 +3289,7 @@ var CONTROLS_SELECTOR = '[data-glide-el^="controls"]';
 var PREVIOUS_CONTROLS_SELECTOR = CONTROLS_SELECTOR + ' [data-glide-dir*="<"]';
 var NEXT_CONTROLS_SELECTOR = CONTROLS_SELECTOR + ' [data-glide-dir*=">"]';
 
-function controls (Glide, Components, Events) {
+function Controls (Glide, Components, Events) {
   /**
    * Instance of the binder for DOM Events.
    *
@@ -3718,7 +3574,7 @@ function controls (Glide, Components, Events) {
   return Controls;
 }
 
-function keyboard (Glide, Components, Events) {
+function Keyboard (Glide, Components, Events) {
   /**
    * Instance of the binder for DOM Events.
    *
@@ -3807,7 +3663,7 @@ function keyboard (Glide, Components, Events) {
   return Keyboard;
 }
 
-function autoplay (Glide, Components, Events) {
+function Autoplay (Glide, Components, Events) {
   /**
    * Instance of the binder for DOM Events.
    *
@@ -3981,7 +3837,7 @@ function sortBreakpoints(points) {
   return {};
 }
 
-function breakpoints (Glide, Components, Events) {
+function Breakpoints (Glide, Components, Events) {
   /**
    * Instance of the binder for DOM Events.
    *
@@ -4070,6 +3926,7 @@ function breakpoints (Glide, Components, Events) {
 }
 
 var COMPONENTS = {
+  // Required
   Html: Html,
   Translate: Translate,
   Transition: Transition,
@@ -4081,7 +3938,16 @@ var COMPONENTS = {
   Clones: Clones,
   Resize: Resize,
   Build: Build,
-  Run: Run
+  Run: Run,
+
+  // Optional
+  Swipe: Swipe,
+  Images: Images,
+  Anchors: Anchors,
+  Controls: Controls,
+  Keyboard: Keyboard,
+  Autoplay: Autoplay,
+  Breakpoints: Breakpoints
 };
 
 var Glide$1 = function (_Core) {
@@ -4104,4 +3970,3 @@ var Glide$1 = function (_Core) {
 }(Glide);
 
 export default Glide$1;
-export { swipe as Swipe, images as Images, anchors as Anchors, controls as Controls, keyboard as Keyboard, autoplay as Autoplay, breakpoints as Breakpoints };

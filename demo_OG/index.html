@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glide Demo</title>
+
+
+  <!-- JavaScript-->
+  <script src="./dist/glide.js"></script>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- Required Core Stylesheet -->
+  <link rel="stylesheet" href="./dist/css/glide.core.min.css">
+
+  <!-- Optional Theme Stylesheet -->
+  <link rel="stylesheet" href="./dist/css/glide.theme.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    content {
+      display: flex;
+      width: 100vw;
+      flex-direction: column;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .options > * {
+      display: flex;
+      flex-direction: column;
+      width: 153px;
+    }
+
+    .glide {
+      height: 500px;
+      margin: 50px 0;
+    }
+
+    .glide__slide {
+      transition: transform 0.5s, opacity 0.5s;
+    }
+
+    .glide__slides {
+      height: 100%;
+    }
+
+    .glide__track {
+      height: 100%;
+    }
+
+    .glide img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+  </div>
+
+  <script src="build/App.js"></script>
+</body>
+
+</html>
